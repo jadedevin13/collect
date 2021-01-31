@@ -6,6 +6,6 @@
 		global="jdbc/collectDs" />
 
 <!-- 	Pass devMode parameter from outside -->
-<!-- 	<Parameter name="devMode" value="true" /> -->
+ 		<Parameter name="devMode" value="true" />
 
 </Context>
