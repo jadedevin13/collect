@@ -7,18 +7,13 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 import static org.springframework.web.context.WebApplicationContext.SCOPE_SESSION;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Set;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipFile;
+import java.util.zip.ZipInputStream;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
@@ -28,6 +23,7 @@ import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.compress.utils.Sets;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.ObjectUtils;
 import org.openforis.collect.ProxyContext;
 import org.openforis.collect.concurrency.CollectJobManager;
@@ -550,6 +546,36 @@ public class RecordController extends BasicController implements Serializable {
 		String fileName = String.format("collect-%s-data-export-%s-%s-%s.zip", outputFormat, surveyName, step,
 				Dates.formatLocalDateTime(new Date()));
 		Controllers.writeFileToResponse(response, file, fileName, MediaTypes.ZIP_CONTENT_TYPE);
+	}
+
+	@RequestMapping(value = "survey/exported/data/records", method = GET, produces = APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public List<List<Map<String, String>>> csvExportResult() throws IOException {
+		File file = csvDataExportJob.getOutputFile();
+		ZipFile zipFile = new ZipFile(file);
+		Enumeration<? extends ZipEntry> zipEntries = zipFile.entries();
+		List<List<Map<String, String>>> entries = new ArrayList<>();
+		while(zipEntries.hasMoreElements()){
+			List<Map<String, String>> entry = new ArrayList<>();
+			String[] csvHeaders = new String[0];
+			ZipEntry zipEntry = zipEntries.nextElement();
+			InputStream stream = zipFile.getInputStream(zipEntry);
+			String contents = IOUtils.toString(stream, StandardCharsets.UTF_8);
+			for (String row : contents.split("\n")) {
+				Map<String, String> csvContents = new HashMap<>();
+				String[] columns = row.split(",");
+				if(csvHeaders.length == 0) {
+					csvHeaders = columns;
+				} else {
+					for (int csvHeaderIndex = 0; csvHeaderIndex < columns.length; csvHeaderIndex++) {
+						csvContents.put(csvHeaders[csvHeaderIndex].replaceAll("\"", ""), columns[csvHeaderIndex].replaceAll("\"", ""));
+					}
+					entry.add(csvContents);
+				}
+			};
+			entries.add(entry);
+		}
+		return entries;
 	}
 
 	@RequestMapping(value = "survey/{surveyId}/data/records/startbackupexport", method = POST)

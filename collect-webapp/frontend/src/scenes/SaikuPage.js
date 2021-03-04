@@ -85,7 +85,7 @@ class SaikuPage extends Component {
 			this.state.showSaiku ?
 				<MaxAvailableSpaceContainer>
 					<iframe src={applicationInfo.saikuUrl}
-						title="Open Foris Collect - Saiku"
+						title="JHMC Foris Collect - Saiku"
 						width="100%" height="100%" />
 				</MaxAvailableSpaceContainer>
 				: <Grid container

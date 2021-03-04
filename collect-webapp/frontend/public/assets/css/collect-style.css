@@ -178,7 +178,7 @@ fieldset legend {
 }
 
 .main .jumbotron {
-  background-color: #6699cc;
+  background-color: #7DA804;
   color: white;
 }
 
@@ -374,7 +374,7 @@ span.survey-selector {
 }
 
 .dropdown-toggle.survey-dropdown-toggle {
-  background-color: #6699cc;
+  background-color: #7DA804;
   border-color: #538cc6;
   padding: 10px;
   color: white;
@@ -382,7 +382,7 @@ span.survey-selector {
 
 .dropdown-toggle.survey-dropdown-toggle:hover,
 .dropdown.survey-selector.show .dropdown-toggle.survey-dropdown-toggle {
-  background-color: #4785c2;
+  background-color: #A9DA1D;
 }
 
 .dropdown-item.survey-item {

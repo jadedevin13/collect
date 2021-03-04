@@ -9,7 +9,7 @@ class SurveEditPage extends Component {
 	  return (
 	    <MaxAvailableSpaceContainer>
 	      <iframe src={Constants.BASE_URL + 'zk/surveydesigner/survey_edit.zul?id=' + surveyId} 
-						title="Open Foris Collect - Survey Designer"
+						title="JHMC Foris Collect - Survey Designer"
 						width="100%" height="100%" />
 	    </MaxAvailableSpaceContainer>
 	  )

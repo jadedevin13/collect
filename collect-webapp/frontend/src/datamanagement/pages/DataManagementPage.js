@@ -57,6 +57,7 @@ class DataManagementPage extends React.Component {
     this.handleDeleteButtonClick = this.handleDeleteButtonClick.bind(this)
     this.navigateToItemEditView = this.navigateToItemEditView.bind(this)
     this.handleExportToCsvButtonClick = this.handleExportToCsvButtonClick.bind(this)
+    this.handleWasteTrackingReport = this.handleWasteTrackingReport.bind(this);
     this.handleBackupButtonClick = this.handleBackupButtonClick.bind(this)
     this.handleBackupImportButtonClick = this.handleBackupImportButtonClick.bind(this)
     this.handleCsvImportButtonClick = this.handleCsvImportButtonClick.bind(this)
@@ -178,7 +179,9 @@ class DataManagementPage extends React.Component {
   handleExportToCsvButtonClick() {
     RouterUtils.navigateToRecordCsvExportPage(this.props.history)
   }
-
+  handleWasteTrackingReport() {
+    RouterUtils.navigateToWasteTrackingReportPage(this.props.history)
+  }
   handleBackupButtonClick() {
     RouterUtils.navigateToRecordBackupPage(this.props.history)
   }
@@ -283,7 +286,7 @@ class DataManagementPage extends React.Component {
       <MaxAvailableSpaceContainer ref={this.wrapperRef}>
         <TableResizeOnWindowResizeComponent wrapperRef={this.wrapperRef} margin={124} />
         <Row className="justify-content-between">
-          <Col md={2}>
+          <Col md={1}>
             {loggedUser.canCreateRecords(userRoleInSurveyGroup) && (
               <Button color={'info'} onClick={this.handleNewButtonClick}>
                 New
@@ -301,12 +304,12 @@ class DataManagementPage extends React.Component {
                 </Button>
               )}
           </Col>
-          <Col md={2}>
+          <Col md={1}>
             <Button color="success" onClick={this.handleValidationReportButtonClick}>
               <i className="fa fa-exclamation-triangle" aria-hidden="true"></i> Validation Report
             </Button>
           </Col>
-          <Col md={2}>
+          <Col md={1}>
             <ButtonDropdown
               isOpen={this.state.exportDropdownOpen}
               toggle={() => this.setState({ exportDropdownOpen: !this.state.exportDropdownOpen })}
@@ -326,7 +329,12 @@ class DataManagementPage extends React.Component {
               </DropdownMenu>
             </ButtonDropdown>
           </Col>
-          <Col md={2}>
+          <Col md={1}>
+            <Button onClick={this.handleWasteTrackingReport}>
+              <i className="fa fa-flag" aria-hidden="true"></i> Create Waste Tracking Report
+            </Button>
+          </Col>
+          <Col md={1}>
             {loggedUser.canImportRecords(userRoleInSurveyGroup) && (
               <ButtonDropdown
                 isOpen={this.state.importDropdownOpen}
@@ -348,7 +356,7 @@ class DataManagementPage extends React.Component {
               </ButtonDropdown>
             )}
           </Col>
-          <Col md={2}>
+          <Col md={1}>
             {loggedUser.canPromoteRecordsInBulk(userRoleInSurveyGroup) && (
               <UncontrolledDropdown>
                 <DropdownToggle color="warning" caret>
@@ -375,7 +383,7 @@ class DataManagementPage extends React.Component {
               </UncontrolledDropdown>
             )}
           </Col>
-          <Col md={2}>
+          <Col md={1}>
             <FormControl>
               <SurveyLanguagesSelect
                 survey={survey}

@@ -3,6 +3,7 @@ import './App.scss'
 import React, { useEffect } from 'react'
 import { Switch, Route } from 'react-router-dom'
 import { connect, useDispatch } from 'react-redux'
+import unzip from 'unzip-js';
 
 import Header from 'common/components/Header'
 import Sidebar from 'common/components/Sidebar'
@@ -15,6 +16,7 @@ import HomePage from 'scenes/HomePage'
 import BackupDataExportPage from 'datamanagement/pages/BackupDataExportPage'
 import BackupDataImportPage from 'datamanagement/pages/BackupDataImportPage'
 import CsvDataExportPage from 'datamanagement/pages/CsvDataExportPage'
+import WasteTrackingReportPage from 'datamanagement/pages/WasteTrackingReportPage'
 import CsvDataImportPage from 'datamanagement/pages/CsvDataImportPage'
 import RecordEditPage from 'datamanagement/pages/RecordEditPage'
 import BackupPage from 'backuprestore/pages/BackupPage'
@@ -62,6 +64,7 @@ export const FullScreenRoute = ({ component: Component, ...rest }) => (
 )
 
 const App = (props) => {
+  console.log(unzip);
   const { systemErrorShown, systemErrorMessage, systemErrorStackTrace } = props
 
   const dispatch = useDispatch()
@@ -79,6 +82,7 @@ const App = (props) => {
         <DefaultRoute path="/dashboard" exact name="Dashboard" component={DashboardPage} />
         <DefaultRoute path="/datamanagement" exact name="DataManagement" component={DataManagementPage} />
         <DefaultRoute path="/datamanagement/csvexport" exact name="CsvDataExport" component={CsvDataExportPage} />
+        <DefaultRoute path="/datamanagement/wastetracking" exact name="WasteTrackingReport" component={WasteTrackingReportPage} />
         <DefaultRoute path="/datamanagement/backup" exact name="BackupDataExport" component={BackupDataExportPage} />
         <DefaultRoute
           path="/datamanagement/backupimport"

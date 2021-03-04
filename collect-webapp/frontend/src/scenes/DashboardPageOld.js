@@ -23,7 +23,7 @@ import {
   Table
 } from "reactstrap";
 
-const brandPrimary = '#20a8d8';
+const brandPrimary = '#7DA804';
 const brandSuccess = '#4dbd74';
 const brandInfo = '#63c2de';
 const brandWarning = '#f8cb00';

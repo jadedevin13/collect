@@ -29,6 +29,10 @@ class RouterUtils {
     RouterUtils._navigateToUrl(history, '/datamanagement/csvexport')
   }
 
+  static navigateToWasteTrackingReportPage(history) {
+    RouterUtils._navigateToUrl(history, '/datamanagement/wastetracking')
+  }
+
   static navigateToRecordBackupPage(history) {
     RouterUtils._navigateToUrl(history, '/datamanagement/backup')
   }

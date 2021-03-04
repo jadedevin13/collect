@@ -32,6 +32,11 @@ const routes = [
     surveySelectRequired: true,
   },
   {
+    path: '/datamanagement/wastetracking',
+    name: 'Waste Tracking Report',
+    surveySelectRequired: true,
+  },
+  {
     path: '/datamanagement/backup',
     name: 'Backup data',
     surveySelectRequired: true,

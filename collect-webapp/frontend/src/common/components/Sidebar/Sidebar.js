@@ -178,10 +178,10 @@ const Sidebar = () => {
         <div style={{ position: 'fixed', bottom: '0px' }}>
           <VersionInfo />
           <span>
-            <a href="http://www.openforis.org" target="_blank" rel="noopener noreferrer">
-              Open Foris
+            <a id="author" href="https://www.mybusybee.net/" target="_blank" rel="noopener noreferrer">
+              MyBusyBee
             </a>{' '}
-            &copy; 2010-2021
+            &copy; 2021
           </span>
         </div>
       </nav>

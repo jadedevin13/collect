@@ -61,6 +61,10 @@ export default class RecordService extends AbstractService {
     return this.postJson('survey/' + surveyId + '/data/records/startcsvexport', parameters)
   }
 
+  getRecords() {
+    return this.get('survey/exported/data/records')
+  }
+
   downloadCSVDataExportResult(surveyId) {
     this.downloadFile(this.BASE_URL + 'survey/' + surveyId + '/data/records/csvexportresult.zip')
   }

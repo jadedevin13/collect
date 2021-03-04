@@ -27,7 +27,7 @@ class VersionInfo extends Component {
               Latest version running
             </UncontrolledTooltip>
           : <UncontrolledTooltip placement="top" className="warning" target="old-version-running-icon">
-            Old version running: please update it running Update Open Foris Collect
+            Old version running: please update it running Update JHMC Foris Collect
           </UncontrolledTooltip>
         : <UncontrolledTooltip placement="top" className="error" target="cannot-verify-latest-version-icon">
           Cannot verify if you are running the latest version of Collect
