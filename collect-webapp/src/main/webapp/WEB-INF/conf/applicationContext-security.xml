@@ -31,6 +31,8 @@
 		<intercept-url access="permitAll" pattern="/api/defaultpasswordactive" />
 		<intercept-url access="permitAll" pattern="/api/info" />
 		<intercept-url access="permitAll" pattern="/api/complete-info" />
+		<intercept-url access="permitAll" pattern="/api/survey/**" />
+		<intercept-url access="permitAll" pattern="/api/command/record/attribute" />
 		<intercept-url access="permitAll" pattern="/assets/**" />
 		<intercept-url access="permitAll" pattern="/earthFiles/**"  />
 		<intercept-url access="permitAll" pattern="/images/**" />
